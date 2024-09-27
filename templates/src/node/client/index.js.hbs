@@ -1,0 +1,16 @@
+export default {
+  category: "{{nodeCategory}}",
+  color: "{{nodeColor}}",
+  icon: "icon.svg",
+  inputs: {{nodeInputs}},
+  outputs: {{nodeOutputs}},
+  defaults: {
+    name: { value: "" },
+  },
+  paletteLabel: function () {
+    return this.name || this._("{{dashCase nodeName}}.name") || "{{dashCase nodeName}}";
+  },
+  label: function () {
+    return this.name || this._("{{dashCase nodeName}}.name") || "{{dashCase nodeName}}";
+  }
+};

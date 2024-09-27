@@ -1,0 +1,18 @@
+import { Node } from "@allanoricil/node-red-node";
+import axios from "axios";
+
+export default class {{pascalCase nodeName}} extends Node {
+  constructor(config) {
+    super(config);
+  }
+
+  onInput(msg, send, done) {
+    this.log(`type: ${ {{pascalCase nodeName}}.type } id: ${ this.id } received msg`);
+    send(msg);
+    done();
+  }
+
+  onClose() {
+    this.log(`type: ${ {{pascalCase nodeName}}.type } id: ${ this.id } removed on close`);
+  }
+}
