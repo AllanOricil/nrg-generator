@@ -4,19 +4,19 @@ const nodeInputs = [
   {
     type: "input",
     name: "nodeName",
-    message: "Node name?",
+    message: "What would you like to name your node?",
     default: "node-1",
   },
   {
     type: "input",
     name: "nodeCategory",
-    message: "Node category?",
+    message: "Which category should your node belong to?",
     default: "new category",
   },
   {
     type: "input",
     name: "nodeColor",
-    message: "Node color?",
+    message: "What color should represent your node?",
     default: "#FFFFFF",
     validate: function (value) {
       const hexColorRegex = /^#([0-9A-F]{3}|[0-9A-F]{6})$/i;
@@ -29,7 +29,7 @@ const nodeInputs = [
   {
     type: "input",
     name: "nodeInputs",
-    message: "Node inputs?",
+    message: "How many inputs should your node have?",
     default: 1,
     validate: function (value) {
       const numberValue = parseInt(value, 10);
@@ -42,7 +42,7 @@ const nodeInputs = [
   {
     type: "input",
     name: "nodeOutputs",
-    message: "Node outputs?",
+    message: "How many outputs should your node have?",
     default: 1,
     validate: function (value) {
       const numberValue = parseInt(value, 10);
@@ -88,13 +88,14 @@ const nodeActions = [
 ];
 
 module.exports = function (plop) {
+  const cwd = process.cwd();
   plop.setGenerator("create", {
     description: "Create new Project",
     prompts: [
       {
         type: "input",
         name: "projectName",
-        message: "Project name?",
+        message: "What would you like to name your project?",
         default: "nrg-project",
       },
       ...nodeInputs,
@@ -102,70 +103,78 @@ module.exports = function (plop) {
     actions: [
       {
         type: "add",
-        path: "{{projectName}}/.husky/commit-msg",
+        path: path.resolve(cwd, "{{projectName}}/.husky/commit-msg"),
         templateFile: "templates/.husky/commit-msg.hbs",
       },
       {
         type: "add",
-        path: "{{projectName}}/.husky/pre-commit",
+        path: path.resolve(cwd, "{{projectName}}/.husky/pre-commit"),
         templateFile: "templates/.husky/pre-commit.hbs",
       },
       {
         type: "add",
-        path: "{{projectName}}/.browserslistrc",
+        path: path.resolve(cwd, "{{projectName}}/.browserslistrc"),
         templateFile: "templates/.browserslistrc.hbs",
       },
       {
         type: "add",
-        path: "{{projectName}}/.eslintignore",
+        path: path.resolve(cwd, "{{projectName}}/.eslintignore"),
         templateFile: "templates/.eslintignore.hbs",
       },
       {
         type: "add",
-        path: "{{projectName}}/.eslintrc.json",
+        path: path.resolve(cwd, "{{projectName}}/.eslintrc.json"),
         templateFile: "templates/.eslintrc.json.hbs",
       },
       {
         type: "add",
-        path: "{{projectName}}/.gitignore",
+        path: path.resolve(cwd, "{{projectName}}/.gitignore"),
         templateFile: "templates/.gitignore.hbs",
       },
       {
         type: "add",
-        path: "{{projectName}}/.npmignore",
+        path: path.resolve(cwd, "{{projectName}}/.npmignore"),
         templateFile: "templates/.npmignore.hbs",
       },
       {
         type: "add",
-        path: "{{projectName}}/.prettierignore",
+        path: path.resolve(cwd, "{{projectName}}/.prettierignore"),
         templateFile: "templates/.prettierignore.hbs",
       },
       {
         type: "add",
-        path: "{{projectName}}/commitlint.config.js",
+        path: path.resolve(cwd, "{{projectName}}/.releaserc.json"),
+        templateFile: "templates/.releaserc.json.hbs",
+      },
+      {
+        type: "add",
+        path: path.resolve(cwd, "{{projectName}}/commitlint.config.js"),
         templateFile: "templates/commitlint.config.js.hbs",
       },
       {
         type: "add",
-        path: "{{projectName}}/jsconfig.json",
+        path: path.resolve(cwd, "{{projectName}}/jsconfig.json"),
         templateFile: "templates/jsconfig.json.hbs",
       },
       {
         type: "add",
-        path: "{{projectName}}/nrg.config.js",
+        path: path.resolve(cwd, "{{projectName}}/nrg.config.js"),
         templateFile: "templates/nrg.config.js.hbs",
       },
       {
         type: "add",
-        path: "{{projectName}}/package.json",
+        path: path.resolve(cwd, "{{projectName}}/package.json"),
         templateFile: "templates/package.json.hbs",
       },
       {
         type: "add",
-        path: "{{projectName}}/README.md",
+        path: path.resolve(cwd, "{{projectName}}/README.md"),
         templateFile: "templates/README.md.hbs",
       },
-      ...nodeActions,
+      ...nodeActions.map((action) => ({
+        ...action,
+        path: path.resolve(cwd, action.path),
+      })),
     ],
   });
 
