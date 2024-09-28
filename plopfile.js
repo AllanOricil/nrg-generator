@@ -82,8 +82,8 @@ const nodeActions = [
   },
   {
     type: "add",
-    path: "{{projectName}}/src/nodes/{{dashCase nodeName}}/client/icons/icon.svg",
-    templateFile: "templates/src/node/client/icons/icon.svg.hbs",
+    path: "{{projectName}}/src/nodes/{{dashCase nodeName}}/client/icons/icon.png",
+    templateFile: "templates/src/node/client/icons/icon.png.hbs",
   },
 ];
 
