@@ -7,7 +7,7 @@ CHANGELOG.md
 commitlint.config.js
 eslint.config.js
 node_modules
-src
 test
 tsconfig.json
 jsconfig.json
+!templates/**
