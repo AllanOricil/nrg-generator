@@ -1,6 +1,6 @@
 {
   "name": "@allanoricil/nrg-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "It can be used to create nrg projects, node-red nodes and plugins",
   "license": "MIT",
   "publishConfig": {
