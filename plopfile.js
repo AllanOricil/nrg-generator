@@ -143,6 +143,11 @@ module.exports = function (plop) {
       },
       {
         type: "add",
+        path: path.resolve(cwd, "{{projectName}}/.prettierrc.json"),
+        templateFile: "templates/.prettierrc.json.hbs",
+      },
+      {
+        type: "add",
         path: path.resolve(cwd, "{{projectName}}/.releaserc.json"),
         templateFile: "templates/.releaserc.json.hbs",
       },
