@@ -87,6 +87,13 @@ const nodeActions = [
   },
 ];
 
+const nrgCliVersionInput = {
+  type: "input",
+  name: "nrgCliVersion",
+  message: "Which version of @allanoricil/nrg-cli would you like to use?",
+  default: "1.3.2",
+};
+
 module.exports = function (plop) {
   const cwd = process.cwd();
   plop.setGenerator("create", {
@@ -99,6 +106,7 @@ module.exports = function (plop) {
         default: "nrg-project",
       },
       ...nodeInputs,
+      nrgCliVersionInput,
     ],
     actions: [
       {
@@ -185,7 +193,7 @@ module.exports = function (plop) {
 
   plop.setGenerator("create:node", {
     description: "Create new Node",
-    prompts: [...nodeInputs],
+    prompts: [...nodeInputs, nrgCliVersionInput],
     actions: [...nodeActions].map((action) => ({
       ...action,
       path: action.path.replace("{{projectName}}", process.cwd()),
